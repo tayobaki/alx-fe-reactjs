@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useRecipeStore } from '../store/useRecipeStore';
+import { useRecipeStore } from './recipeStore';
 
 
 const EditRecipeForm = ({ recipe }) => {
@@ -14,6 +14,7 @@ const EditRecipeForm = ({ recipe }) => {
 
   return (
     <form onSubmit={handleSubmit}>
+      <h2>Edit Recipe</h2>
       <input
         type="text"
         value={title}
