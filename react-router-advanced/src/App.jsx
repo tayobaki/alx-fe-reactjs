@@ -3,9 +3,10 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import Home from './components/Home';
 import Profile from './components/Profile';
+import Blog from './components/Blog';
+import BlogPost from './components/BlogPost';
 import Login from './components/Login';
 import ProtectedRoute from './components/ProtectedRoute';
-import Blog from './components/Blog';
 
 function App() {
   return (
@@ -27,7 +28,8 @@ function App() {
               <Profile />
             </ProtectedRoute>
           } />
-          <Route path="/blog/*" element={<Blog />} />
+          <Route path="/blog" element={<Blog />} />
+          <Route path="/blog/:id" element={<BlogPost />} />
           <Route path="/login" element={<Login />} />
         </Routes>
       </div>
