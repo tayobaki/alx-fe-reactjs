@@ -1,12 +1,15 @@
+// src/components/Login.jsx
 import React from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
+import { useAuth } from '../hooks/useAuth';
 
 const Login = () => {
   const navigate = useNavigate();
   const location = useLocation();
+  const { login } = useAuth();
 
   const handleLogin = () => {
-    localStorage.setItem('isAuthenticated', 'true');
+    login();
     const origin = location.state?.from?.pathname || '/profile';
     navigate(origin);
   };
