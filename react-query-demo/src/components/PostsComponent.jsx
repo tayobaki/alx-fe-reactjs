@@ -7,12 +7,21 @@ const fetchPosts = async () => {
     throw new Error('Network response was not ok');
   }
   return response.json();
+
 };
 
 
 function PostsComponent() {
   const queryClient = useQueryClient()
-  const { data, error, isLoading, isError } = useQuery('posts', fetchPosts);
+  const { data, error, isLoading, isError } = useQuery('posts', fetchPosts, {
+    staleTime: 5 * 60 * 1000,
+
+    cacheTime: 10 * 60 * 1000,
+
+    refetchOnWindowFocus: true,
+
+    keepPreviousData: true,
+  });
 
   if (isLoading) return <div>Loading...</div>;
   if (isError) return <div>Error: {error.message}</div>;
