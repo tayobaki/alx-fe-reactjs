@@ -6,8 +6,11 @@ import RecipeDetails from './components/RecipeDetails';
 import SearchBar from './components/SearchBar';
 import FavoritesList from './components/FavoritesList';
 import RecommendationsList from './components/RecommendationsList';
+import Counter from './components/Counter';
 
 function App() {
+
+
   return (
     <Router>
       <div className="App">
@@ -19,14 +22,15 @@ function App() {
         <Routes>
           <Route path="/" element={
             <>
+              <Counter />
               <SearchBar />
               <AddRecipeForm />
               <RecipeList />
               <RecommendationsList />
             </>
           } />
-          <Route path="/recipe/:id" element={<RecipeDetails />} />
-          <Route path="/favorites" element={<FavoritesList />} />
+          <Route path="/recipe/:id" Component={RecipeDetails} />
+          <Route path="/favorites" Component={FavoritesList} />
         </Routes>
       </div>
     </Router>

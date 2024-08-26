@@ -9,6 +9,7 @@ export const useRecipeStore = create(
       filteredRecipes: [],
       favorites: [],
       recommendations: [],
+
       addRecipe: (newRecipe) =>
         set((state) => ({
           recipes: [...state.recipes, { ...newRecipe, id: Date.now() }],
