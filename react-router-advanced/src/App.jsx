@@ -3,9 +3,9 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import Home from './components/Home';
 import Profile from './components/Profile';
-import Blog from './components/Blog';
 import Login from './components/Login';
 import ProtectedRoute from './components/ProtectedRoute';
+import Blog from './components/Blog';
 
 function App() {
   return (
