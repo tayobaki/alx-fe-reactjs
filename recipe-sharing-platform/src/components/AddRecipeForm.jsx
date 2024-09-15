@@ -21,8 +21,9 @@ const AddRecipeForm = () => {
 		if (!formData.title.trim()) newErrors.title = "Title is required";
 		if (!formData.ingredients.trim())
 			newErrors.ingredients = "Ingredients are required";
-		if (formData.ingredients.split(",").length < 2)
+		if (formData.ingredients.split(",").filter((i) => i.trim()).length < 2) {
 			newErrors.ingredients = "Please enter at least two ingredients";
+		}
 		if (!formData.steps.trim())
 			newErrors.steps = "Preparation steps are required";
 		return newErrors;
@@ -32,9 +33,7 @@ const AddRecipeForm = () => {
 		e.preventDefault();
 		const newErrors = validateForm();
 		if (Object.keys(newErrors).length === 0) {
-			// Form is valid, you can submit the data here
 			console.log("Form submitted:", formData);
-			// Reset form after submission
 			setFormData({ title: "", ingredients: "", steps: "" });
 			setErrors({});
 		} else {
@@ -58,7 +57,9 @@ const AddRecipeForm = () => {
 						id="title"
 						name="title"
 						value={formData.title}
-						onChange={handleChange}
+						onChange={(e) =>
+							setFormData({ ...formData, title: e.target.value })
+						}
 						className={`mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 ${
 							errors.title ? "border-red-500" : ""
 						}`}
@@ -79,7 +80,9 @@ const AddRecipeForm = () => {
 						id="ingredients"
 						name="ingredients"
 						value={formData.ingredients}
-						onChange={handleChange}
+						onChange={(e) =>
+							setFormData({ ...formData, ingredients: e.target.value })
+						}
 						rows="3"
 						className={`mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 ${
 							errors.ingredients ? "border-red-500" : ""
@@ -101,7 +104,9 @@ const AddRecipeForm = () => {
 						id="steps"
 						name="steps"
 						value={formData.steps}
-						onChange={handleChange}
+						onChange={(e) =>
+							setFormData({ ...formData, steps: e.target.value })
+						}
 						rows="5"
 						className={`mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 ${
 							errors.steps ? "border-red-500" : ""
