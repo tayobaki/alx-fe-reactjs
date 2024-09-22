@@ -37,6 +37,18 @@ const App = () => {
 		}
 	};
 
+	// 	const [page, setPage] = useState(1);
+	// const handleLoadMore = async () => {
+	//   const data = await fetchUserData(username, location, minRepos, page + 1);
+	//   setUsers((prev) => [...prev, ...data.items]);
+	//   setPage(page + 1);
+	// };
+
+	// // Add a button below your results
+	// <button onClick={handleLoadMore} className="bg-blue-500 text-white p-2">
+	//   Load More
+	// </button>
+
 	return (
 		<div className="app p-4">
 			<Search onSearch={handleSearch} />
