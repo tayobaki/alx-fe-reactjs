@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { fetchUserData } from "../services/githubService"; // Assuming this is where your API call is made
+import { fetchUserData } from "../services/githubService"; // Assuming the API call is here
 
 const Search = () => {
 	const [username, setUsername] = useState("");
@@ -10,17 +10,17 @@ const Search = () => {
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		setLoading(true);
-		setError(null);
+		setError(null); // Reset error state before making the request
 
 		try {
 			const data = await fetchUserData({ username });
-			if (data.items && data.items.length > 0) {
-				setUserData(data.items[0]); // Assuming you want the first result for simplicity
+			if (data && data.login) {
+				setUserData(data); // If user is found, set the userData
 			} else {
-				setError("Looks like we can't find the user");
+				setError("Looks like we can't find the user"); // If no user data is found
 			}
 		} catch (err) {
-			setError("Looks like we can't find the user");
+			setError("Looks like we can't find the user"); // Catch block for API or network errors
 		} finally {
 			setLoading(false);
 		}
@@ -44,9 +44,13 @@ const Search = () => {
 				</button>
 			</form>
 
+			{/* Display loading state */}
 			{loading && <p>Loading...</p>}
-			{error && <p>{error}</p>}
 
+			{/* Display error message */}
+			{error && <p className="text-red-500">{error}</p>}
+
+			{/* Display user data if available */}
 			{userData && (
 				<div className="user-info mt-4 p-4 bg-gray-100 rounded shadow">
 					<img
